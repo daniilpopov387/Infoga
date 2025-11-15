@@ -109,7 +109,8 @@ class PPrint(object):
 			email = 'Email: %s (%s)'%(self.email,', '.join([x for x in self.ips]))
 			plus(email)
 			if self.file != None:
-				self.file.write('[+] '+email+'\n')
+				output_string = '[+] '+email+'\n'
+                self.file.write(output_string.encode('utf-8'))
 			if self.ips != []:
 				data = json.loads(Shodan(self.ips[0]).search())
 				if data == {}:
@@ -171,4 +172,5 @@ class PPrint(object):
 
 					if self.file != None:
 						self.file.write('\n'+headers.encode('utf-8'))
+
 					print(headers.encode('utf-8'))
